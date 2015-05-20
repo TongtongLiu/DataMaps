@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>地理数据可视化</title>
+        <script type="text/javascript" src="./lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="./lib/js/highmaps.js"></script>
+        <script type="text/javascript" src="./lib/js/themes/gray.js"></script>
+        <script type="text/javascript" src="./lib/js/modules/exporting.js"></script>
+        <script type="text/javascript" src="./data/data.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                // Initiate the chart
+                $('#container').highcharts('Map', {
+                    title: {
+                        text: '数据可视化'
+                    },
+
+                    subtitle: {
+                        text: '贫富差距'
+                    },
+
+                    credits: {
+                        enabled: true,
+                        text: '毛概期末报告',
+                        href: ''
+                    },
+
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+
+                    colorAxis: {
+                        min: 0
+                    },
+
+                    series: [{
+                        data: data,
+                        mapData: Highcharts.maps['countries/cn/custom/cn-all-sar-taiwan'],
+                        joinBy: 'hc-key',
+                        name: 'GDP',
+                        states: {
+                            hover: {
+                                color: '#BADA55'
+                            }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }]
+                });
+            });
+        </script>
+        <script type="text/javascript" src="./lib/js/cn-all-sar-taiwan.js"></script>
+        <style type="text/css">
+            #container {
+                height: 500px; 
+                min-width: 310px; 
+                max-width: 800px; 
+                margin: 0 auto; 
+            }
+            .loading {
+                margin-top: 10em;
+                text-align: center;
+                color: gray;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container"></div>
+    </body>
+</html>
