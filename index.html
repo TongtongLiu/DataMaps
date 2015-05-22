@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>地理数据可视化</title>
+        <title>可视化报告</title>
         <link href="lib/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,75 +21,35 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#">可视化报告</a>
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
+                <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li id="gdp_bar" class="active"><a href="#">人均GDP</a></li>
+                        <li id="gdp_rate_bar"><a href="#">人均GDP增长率</a></li>
+                        <li id="realative_gdp_bar"><a href="#">相对人均GDP</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+
         <div class="container">
-            <div class="starter-template">
-                <h1>Bootstrap starter template</h1>
-            </div>
             <div id="data-map"></div>
         </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Copyright@2015 iGeek Group</p>
+            </div>
+        </footer>
 
         <script type="text/javascript" src="lib/jQuery/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/js/highmaps.js"></script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/js/modules/exporting.js"></script>
-        <script type="text/javascript" src="data/data.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('#data-map').highcharts('Map', {
-                    title: {
-                        text: ''
-                    },
-
-                    subtitle: {
-                        text: ''
-                    },
-
-                    credits: {
-                        enabled: true,
-                        text: '',
-                        href: ''
-                    },
-
-                    mapNavigation: {
-                        enabled: true,
-                        buttonOptions: {
-                            verticalAlign: 'bottom'
-                        }
-                    },
-
-                    colorAxis: {
-                        min: 0
-                    },
-
-                    series: [{
-                        data: data,
-                        mapData: Highcharts.maps['countries/cn/custom/cn-all-sar-taiwan'],
-                        joinBy: 'hc-key',
-                        name: 'GDP',
-                        states: {
-                            hover: {
-                                color: '#BADA55'
-                            }
-                        },
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.name}'
-                        }
-                    }]
-                });
-            });
-        </script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/map/cn-all-sar-taiwan.js"></script>
+        <script type="text/javascript" src="data/data.js"></script>
+        <script type="text/javascript" src="js/map_show.js"></script>
+        <script type="text/javascript" src="js/event.js"></script>
     </body>
 </html>
