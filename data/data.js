@@ -9,7 +9,7 @@ var data = [
     },
     {
         "hc-key": "tw-km",
-        "value": 2
+        "value": 2000
     },
     {
         "hc-key": "cn-zj",
@@ -257,7 +257,7 @@ var data = [
     },
     {
         "hc-key": "cn-yn",
-        "value": 64
+        "value": 6000
     },
     {
         "hc-key": "cn-gx",

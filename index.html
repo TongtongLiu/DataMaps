@@ -1,28 +1,63 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>地理数据可视化</title>
-        <script type="text/javascript" src="./lib/js/jquery.min.js"></script>
-        <script type="text/javascript" src="./lib/js/highmaps.js"></script>
-        <script type="text/javascript" src="./lib/js/themes/gray.js"></script>
-        <script type="text/javascript" src="./lib/js/modules/exporting.js"></script>
-        <script type="text/javascript" src="./data/data.js"></script>
+        <link href="lib/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div class="container">
+            <div class="starter-template">
+                <h1>Bootstrap starter template</h1>
+            </div>
+            <div id="data-map"></div>
+        </div>
+
+        <script type="text/javascript" src="lib/jQuery/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/highmaps-1.1.5/js/highmaps.js"></script>
+        <script type="text/javascript" src="lib/highmaps-1.1.5/js/modules/exporting.js"></script>
+        <script type="text/javascript" src="data/data.js"></script>
         <script type="text/javascript">
             $(function () {
-                // Initiate the chart
-                $('#container').highcharts('Map', {
+                $('#data-map').highcharts('Map', {
                     title: {
-                        text: '数据可视化'
+                        text: ''
                     },
 
                     subtitle: {
-                        text: '贫富差距'
+                        text: ''
                     },
 
                     credits: {
                         enabled: true,
-                        text: '毛概期末报告',
+                        text: '',
                         href: ''
                     },
 
@@ -55,23 +90,6 @@
                 });
             });
         </script>
-        <script type="text/javascript" src="./lib/js/cn-all-sar-taiwan.js"></script>
-        <style type="text/css">
-            #container {
-                height: 500px; 
-                min-width: 310px; 
-                max-width: 800px; 
-                margin: 0 auto; 
-            }
-            .loading {
-                margin-top: 10em;
-                text-align: center;
-                color: gray;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div id="container"></div>
+        <script type="text/javascript" src="lib/highmaps-1.1.5/map/cn-all-sar-taiwan.js"></script>
     </body>
 </html>
