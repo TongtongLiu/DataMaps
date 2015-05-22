@@ -8,6 +8,7 @@
         <meta name="author" content="">
         <title>可视化报告</title>
         <link href="lib/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
     </head>
 
@@ -35,6 +36,11 @@
 
         <div class="container">
             <div id="data-map"></div>
+            <div id="year-selector">
+                <input id="year-slider" data-slider-id='year-slider' type="text" data-slider-min="1979"
+                   data-slider-max="2011" data-slider-step="1" data-slider-value="1979" data-slider-handle="square"/>
+                <span id="selected-year">1979</span>
+            </div>
         </div>
 
         <footer class="footer">
@@ -45,6 +51,7 @@
 
         <script type="text/javascript" src="lib/jQuery/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap-slider/js/bootstrap-slider.js"></script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/js/highmaps.js"></script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/js/modules/exporting.js"></script>
         <script type="text/javascript" src="lib/highmaps-1.1.5/map/cn-all-sar-taiwan.js"></script>

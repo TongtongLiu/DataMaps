@@ -1,17 +1,36 @@
+var tag = 0;
+var year = 1979;
+
+map_show(tag, year);
+
 $('#gdp_bar').bind('click', function() {
     $('#navbar li').removeClass('active');
     $(this).addClass('active');
-    gdp_show();
+    tag = 0;
+    map_show(tag, year);
 });
 
 $('#gdp_rate_bar').bind('click', function() {
     $('#navbar li').removeClass('active');
     $(this).addClass('active');
-    gdp_rate_show();
+    tag = 1;
+    map_show(tag, year);
 });
 
 $('#realative_gdp_bar').bind('click', function() {
     $('#navbar li').removeClass('active');
     $(this).addClass('active');
-    relative_gdp_show();
+    tag = 2;
+    map_show(tag, year);
+});
+
+$('#year-slider').slider({
+    formatter: function(value) {
+        return value;
+    }
+});
+$('#year-slider').on('slide', function(event) {
+    year = event.value;
+    $('#selected-year').text(year);
+    map_show(tag, year);
 });
