@@ -57,12 +57,14 @@ body > .container {
     padding-left: 15px;
 }
 
-#map-contrainer {
+#map-container,
+#detail-container {
     width: 700px;
-    margin: 40px auto;
+    margin: 10px auto;
 }
 
-#data-map {
+#data-map,
+#province-chart {
     width: 650px;
     float: left;
 }
@@ -72,21 +74,16 @@ body > .container {
     float: left;
     margin-top: 160px;
 }
-
-#year-slider {
-    width: 90%;
-    float: left;
-}
 #year-slider .slider-handle {
     background: #dddddd;
 }
 
-#province-detail {
-    display: block;
-    width: 70%;
+hr {
+    width: 700px;
     margin: 0 auto;
 }
 
 #province-name {
-    float: left;
+    text-align: center;
+    padding: 15px;
 }

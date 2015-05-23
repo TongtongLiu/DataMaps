@@ -1,6 +1,3 @@
-var tag = 0;
-var year = 1979;
-
 map_show(tag, year);
 
 $('#gdp_bar').bind('click', function() {
@@ -8,6 +5,7 @@ $('#gdp_bar').bind('click', function() {
     $(this).addClass('active');
     tag = 0;
     map_show(tag, year);
+    province_chart_empty();
 });
 
 $('#gdp_rate_bar').bind('click', function() {
@@ -15,6 +13,7 @@ $('#gdp_rate_bar').bind('click', function() {
     $(this).addClass('active');
     tag = 1;
     map_show(tag, year);
+    province_chart_empty();
 });
 
 $('#realative_gdp_bar').bind('click', function() {
@@ -22,6 +21,7 @@ $('#realative_gdp_bar').bind('click', function() {
     $(this).addClass('active');
     tag = 2;
     map_show(tag, year);
+    province_chart_empty();
 });
 
 $('#year-slider').slider({

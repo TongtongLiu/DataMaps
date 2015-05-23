@@ -1,19 +1,59 @@
-var mapChart;
-var countryChart;
+var map_chart;
+var province_chart;
+
+var tag = 0;
+var year = 1979;
+
+get_gdps = function(key) {
+    for (var i in gdps) {
+        if (gdps[i]['hc-key'] == key) {
+            return gdps[i]['value'].slice(1);
+        }
+    }
+};
+
+get_gdp_rates = function(key) {
+    var rates = [];
+    var values;
+    for (var i in gdps) {
+        if (gdps[i]['hc-key'] == key) {
+            values = gdps[i]['value'];
+            for (var j = 1; j < values.length; j++) {
+                rates.push((values[j] - values[j - 1]) / values[j] * 100);
+            }
+            return rates;
+        }
+    }
+};
+
+get_relative_gdps = function(key) {
+    var relative_gdps = [];
+    var values;
+    var base_values = gdps[gdps.length-1]['value'];
+    for (var i in gdps) {
+        if (gdps[i]['hc-key'] == key) {
+            values = gdps[i]['value'];
+            for (var j = 1; j < values.length; j++) {
+                relative_gdps.push(values[j] / base_values[j]);
+            }
+            return relative_gdps;
+        }
+    }
+};
 
 Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
     proceed.apply(this, Array.prototype.slice.call(arguments, 1));
-    var points = mapChart.getSelectedPoints();
+    var points = map_chart.getSelectedPoints();
 
     if (points.length) {
         if (points.length === 1) {
             $('#province-name').html(points[0].name);
         } else {
-            $('#province-name').html('地区对比');
+            $('#province-name').html("地区对比");
         }
 
-        if (!countryChart) {
-            countryChart = $('#province-chart').highcharts({
+        if (!province_chart) {
+            province_chart = $('#province-chart').highcharts({
                 title: {
                     text: null
                 },
@@ -23,16 +63,10 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                 },
 
                 xAxis: {
-                    tickPixelInterval: 50,
-                    crosshair: true
+                    title: null
                 },
                 yAxis: {
-                    title: null,
-                    opposite: true
-                },
-
-                tooltip: {
-                    shared: true
+                    title: null
                 },
 
                 plotOptions: {
@@ -44,43 +78,65 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                             enabled: false
                         },
                         threshold: 0,
-                        pointStart: parseInt(categories[0])
+                        pointStart: 1979
                     }
                 }
             }).highcharts();
         }
 
-        $.each(points, function (i) {
+        $.each(points, function(i) {
+            var data = [];
+            var key = this['hc-key'];
+            switch (tag) {
+                case 0:
+                    data = get_gdps(key);
+                    break;
+                case 1:
+                    data = get_gdp_rates(key);
+                    break;
+                case 2:
+                    data = get_relative_gdps(key);
+                    break;
+                default:
+                    break;
+            }
+
             // Update
-            if (countryChart.series[i]) {
+            if (province_chart.series[i]) {
                 /*$.each(countries[this.code3].data, function (pointI, value) {
                  countryChart.series[i].points[pointI].update(value, false);
                  });*/
-                countryChart.series[i].update({
+                province_chart.series[i].update({
                     name: this.name,
-                    data: countries[this.code3].data,
-                    type: points.length > 1 ? 'line' : 'area'
+                    data: data,
+                    type: 'line'
                 }, false);
             } else {
-                countryChart.addSeries({
+                province_chart.addSeries({
                     name: this.name,
-                    data: countries[this.code3].data,
-                    type: points.length > 1 ? 'line' : 'area'
+                    data: data,
+                    type: 'line'
                 }, false);
             }
         });
-        while (countryChart.series.length > points.length) {
-            countryChart.series[countryChart.series.length - 1].remove(false);
+        while (province_chart.series.length > points.length) {
+            province_chart.series[province_chart.series.length - 1].remove(false);
         }
-        countryChart.redraw();
-
+        province_chart.redraw();
     } else {
         $('#province-name').html('');
-        if (countryChart) {
-            countryChart = countryChart.destroy();
+        if (province_chart) {
+            province_chart = province_chart.destroy();
         }
     }
 });
+
+province_chart_empty = function () {
+    $('#province-name').html('');
+    if (province_chart) {
+        province_chart = province_chart.destroy();
+    }
+};
 
 map_show = function(tag, year) {
     get_gdp = function(y) {
@@ -158,7 +214,7 @@ map_show = function(tag, year) {
         var base_values = gdps[gdps.length-1]['value'];
         for (var i in gdps) {
             values = gdps[i]['value'];
-            for (var j = 0; j < values.length; j++) {
+            for (var j = 1; j < values.length; j++) {
                 relative_gdp = values[j] / base_values[j];
                 if (relative_gdp > max_relative_gdp) {
                     max_relative_gdp = relative_gdp;
@@ -187,7 +243,7 @@ map_show = function(tag, year) {
             break;
     }
 
-    mapChart = $('#data-map').highcharts('Map', {
+    map_chart = $('#data-map').highcharts('Map', {
         title: {
             text: null
         },
