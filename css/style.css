@@ -1,8 +1,36 @@
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+ul,
+ol,
+li,
+form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
 html {
     position: relative;
     min-height: 100%;
 }
-
 body {
     margin-top: 50px;
     margin-bottom: 60px;
@@ -12,12 +40,8 @@ body > .container {
     padding: 15px;
 }
 .container .text-muted {
-    margin: 20px 0;
+    margin: 15px 0;
     text-align: center;
-}
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 .footer {
@@ -25,30 +49,44 @@ body > .container {
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
+    height: 50px;
     background-color: #f5f5f5;
 }
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
 
-#data-map {
-    width: 70%;
+#map-contrainer {
+    width: 700px;
     margin: 40px auto;
 }
 
+#data-map {
+    width: 650px;
+    float: left;
+}
+
 #year-selector {
-    width: 50%;
-    margin: 20px auto;
-    display: block;
+    width: 20px;
+    float: left;
+    margin-top: 160px;
 }
 
 #year-slider {
     width: 90%;
     float: left;
 }
-
 #year-slider .slider-handle {
     background: #dddddd;
 }
 
-#selected-year {
-    float: right;
+#province-detail {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#province-name {
+    float: left;
 }

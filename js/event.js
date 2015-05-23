@@ -25,6 +25,8 @@ $('#realative_gdp_bar').bind('click', function() {
 });
 
 $('#year-slider').slider({
+    tooltip: 'always',
+    reversed : true,
     formatter: function(value) {
         return value;
     }
