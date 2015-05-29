@@ -19,7 +19,7 @@ get_gdp_rates = function(key) {
         if (gdps[i]['hc-key'] == key) {
             values = gdps[i]['value'];
             for (var j = 1; j < values.length; j++) {
-                rates.push((values[j] - values[j - 1]) / values[j] * 100);
+                rates.push((values[j] - values[j - 1]) / values[j]);
             }
             return rates;
         }
@@ -182,7 +182,7 @@ map_show = function(tag, year) {
             var gdp = {
                 'hc-key': gdps[i]['hc-key'],
                 'value': [(gdps[i]['value'][index] - gdps[i]['value'][index-1])
-                / gdps[i]['value'][index-1] * 100]
+                / gdps[i]['value'][index-1]]
             };
             gdp_rate_data.push(gdp);
         }
@@ -195,7 +195,7 @@ map_show = function(tag, year) {
         for (var i in gdps) {
             values = gdps[i]['value'];
             for (var j = 1; j < values.length; j++) {
-                gdp_rate = (values[j] - values[j-1]) / values[j] * 100;
+                gdp_rate = (values[j] - values[j-1]) / values[j];
                 if (gdp_rate > max_gdp_rate) {
                     max_gdp_rate = gdp_rate;
                 }
@@ -236,18 +236,22 @@ map_show = function(tag, year) {
 
     var data = [];
     var max_data = 0;
+    var name = "";
     switch (tag) {
         case 0:
             data = get_gdp(year);
             max_data = get_max_gdp();
+            name = "人均GDP";
             break;
         case 1:
             data = get_gdp_rate(year);
             max_data = get_max_gdp_rate();
+            name = "人均GDP增长率";
             break;
         case 2:
             data = get_relative_gdp(year);
             max_data = get_max_relative_gdp();
+            name = "相对人均GDP";
             break;
         default:
             break;
@@ -291,7 +295,7 @@ map_show = function(tag, year) {
             data: data,
             mapData: Highcharts.maps['countries/cn/custom/cn-all-sar-taiwan'],
             joinBy: 'hc-key',
-            name: '人均GDP',
+            name: name,
             allowPointSelect: true,
             states: {
                 select: {
