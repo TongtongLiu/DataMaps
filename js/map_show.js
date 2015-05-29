@@ -73,7 +73,9 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                     useHTML: true,
                     headerFormat: '<small>{point.key}</small><table>',
                     pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-                    '<td style="text-align: right"><b>{point.y}&nbsp;&nbsp;&nbsp;</b></td></tr><tr><td colspan="2">这里会放分析</td></tr>',
+                    '<td style="text-align: right"><b>{point.y}&nbsp;&nbsp;&nbsp;</b></td></tr><tr><td colspan="2">' +
+                    '这里会放分析' +
+                    '</td></tr>',
                     footerFormat: '</table>',
                     valueDecimals: 2
                 },
