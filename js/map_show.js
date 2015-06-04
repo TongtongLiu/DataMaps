@@ -19,7 +19,7 @@ get_gdp_rates = function(key) {
         if (gdps[i]['hc-key'] == key) {
             values = gdps[i]['value'];
             for (var j = 1; j < values.length; j++) {
-                rates.push((values[j] - values[j - 1]) / values[j]);
+                rates.push((values[j] - values[j-1]) / values[j-1]);
             }
             return rates;
         }
@@ -193,7 +193,7 @@ map_show = function(tag, year) {
         for (var i in gdps) {
             values = gdps[i]['value'];
             for (var j = 1; j < values.length; j++) {
-                gdp_rate = (values[j] - values[j-1]) / values[j];
+                gdp_rate = (values[j] - values[j-1]) / values[j-1];
                 if (gdp_rate > max_gdp_rate) {
                     max_gdp_rate = gdp_rate;
                 }
