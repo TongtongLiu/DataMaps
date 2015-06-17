@@ -1,6 +1,10 @@
 var map_chart;
 var province_chart;
 
+/*waq*/
+var region;
+/*waq*/
+
 var tag = 0;
 var year = 1979;
 
@@ -72,10 +76,8 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                     shared: true,
                     useHTML: true,
                     headerFormat: '<small>{point.key}</small><table>',
-                    pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-                    '<td style="text-align: right"><b>{point.y}&nbsp;&nbsp;&nbsp;</b></td></tr><tr><td colspan="2">' +
-                    '这里会放分析' +
-                    '</td></tr>',
+                    pointFormat: '<tr><td style="color: {series.color}" class="displayprovince">{series.name}</td>' +
+                    '<td style="text-align: right"><b>: {point.y}&nbsp;&nbsp;&nbsp;</b></td></tr>',
                     footerFormat: '</table>',
                     valueDecimals: 2
                 },
@@ -88,7 +90,15 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                             enabled: false
                         },
                         threshold: 0,
-                        pointStart: 1979
+                        pointStart: 1979,
+                        events: {            
+                            click: function(event) {  
+                                $("#result").html("<b>Result : index = "+event.point.x+" , series = "+this.name + ', x = '+event.point.category+' ,y = '+event.point.y+"</b>");
+                            },
+                            mouseOver: function(event){
+                                region = this.name;
+                            }
+                        }
                     }
                 }
             }).highcharts();
@@ -312,3 +322,29 @@ map_show = function(tag, year) {
         }]
     }).highcharts();
 };
+
+
+$("#province-chart").mousemove(function(e){
+    year = $("small").html();
+    region_analyze_text = "";
+    displayprovinces = $(".displayprovince");
+    for (i = 0; i <displayprovinces.length; i++) {
+        region =  $(".displayprovince:eq("+i+")").html();
+        region_analyze = regionanalyze[region];
+        region_analyze_index = region_analyze[year];
+        if(region_analyze[region_analyze_index]){
+            region_analyze_text += region_analyze[region_analyze_index];
+        }
+    };
+    country_year_index = countryanalyze[year];
+    country_analyze_text = countryanalyze[country_year_index];
+    if(!country_analyze_text){
+        country_analyze_text = year+"年，未收集到国家级别的重大事件。"
+    }
+
+    if(region_analyze_text == ""){
+        region_analyze_text = year+"年，未收集到省市级别的重大事件。"
+    }
+    $("#countryanalyze").html("<p>countryanalyze:"+country_analyze_text+"</p>");
+    $("#regionanalyze").html("<p>regionanalyze:"+region_analyze_text+"</p>");
+});

@@ -44,12 +44,22 @@
         </div>
 
         <hr>
-
-        <div class="container" id="detail-container">
-            <div id="province-name"></div>
-            <div id="province-chart"></div>
+        <div id="province-name"></div>
+        <div id="container">
+            <div class="row">
+            	<div class="col-md-3">
+            		<div id="countryanalyze"></div>
+            	</div>
+            	<div class="col-md-6">
+        			<div id="detail-container">
+        		    	<div id="province-chart"></div>
+        			</div>
+        		</div>
+        		<div class="col-md-3">
+        			<div id="regionanalyze"></div>
+        		</div>
+            </div>
         </div>
-
         <footer class="footer">
             <div class="container">
                 <p class="text-muted"><i>Copyright@2015 iGeek Group</i></p>
@@ -64,6 +74,7 @@
         <!--<script type="text/javascript" src="lib/highmaps-1.1.5/js/modules/exporting.js"></script>-->
         <script type="text/javascript" src="lib/highmaps-1.1.5/map/cn-all-sar-taiwan.js"></script>
         <script type="text/javascript" src="data/data.js"></script>
+        <script type="text/javascript" src="data/analyze.js"></script>
         <script type="text/javascript" src="js/map_show.js"></script>
         <script type="text/javascript" src="js/event.js"></script>
     </body>
