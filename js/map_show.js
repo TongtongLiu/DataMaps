@@ -350,7 +350,10 @@ $("#province-chart").mousemove(function(e){
     $("#regionanalyze").html("<div class='anhead'><h4>地区</h4></div>"+region_analyze_text);
 });
 
-$("#province-chart").mouseout(function(e){
-    $("#countryanalyze").html("");
-    $("#regionanalyze").html("");
+$("body").mousemove(function(e){
+    provincce_chart_content = $("#province-chart").html();
+    if(provincce_chart_content == ""){
+        $("#countryanalyze").html("");
+        $("#regionanalyze").html("");
+    }
 });
