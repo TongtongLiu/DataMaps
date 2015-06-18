@@ -87,3 +87,20 @@ hr {
     text-align: center;
     padding: 15px;
 }
+#countryanalyze{
+    padding-left: 15px;
+}
+#regionanalyze{
+    padding-right: 15px;
+}
+.anhead{
+    margin-bottom: 10px;
+    text-align: center;
+}
+.regionhead{
+    font-weight: bold;
+}
+p{
+    margin-bottom:5px;
+    margin-top: 5px;
+}

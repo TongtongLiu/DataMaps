@@ -75,7 +75,7 @@ Highcharts.wrap(Highcharts.Point.prototype, 'select', function (proceed) {
                 tooltip: {
                     shared: true,
                     useHTML: true,
-                    headerFormat: '<small>{point.key}</small><table>',
+                    headerFormat: '<small id="year">{point.key}</small><table>',
                     pointFormat: '<tr><td style="color: {series.color}" class="displayprovince">{series.name}</td>' +
                     '<td style="text-align: right"><b>: {point.y}&nbsp;&nbsp;&nbsp;</b></td></tr>',
                     footerFormat: '</table>',
@@ -325,15 +325,19 @@ map_show = function(tag, year) {
 
 
 $("#province-chart").mousemove(function(e){
-    year = $("small").html();
+    year = $("#year").html();
     region_analyze_text = "";
     displayprovinces = $(".displayprovince");
     for (i = 0; i <displayprovinces.length; i++) {
         region =  $(".displayprovince:eq("+i+")").html();
+        region_analyze_text = region_analyze_text + "<div class='regionhead'>" + region+ ":</div>";
         region_analyze = regionanalyze[region];
         region_analyze_index = region_analyze[year];
         if(region_analyze[region_analyze_index]){
             region_analyze_text += region_analyze[region_analyze_index];
+        }
+        else{
+            region_analyze_text =region_analyze_text + year+"年，未收集到省市级别的重大事件。";
         }
     };
     country_year_index = countryanalyze[year];
@@ -342,9 +346,11 @@ $("#province-chart").mousemove(function(e){
         country_analyze_text = year+"年，未收集到国家级别的重大事件。"
     }
 
-    if(region_analyze_text == ""){
-        region_analyze_text = year+"年，未收集到省市级别的重大事件。"
-    }
-    $("#countryanalyze").html("<p>countryanalyze:"+country_analyze_text+"</p>");
-    $("#regionanalyze").html("<p>regionanalyze:"+region_analyze_text+"</p>");
+    $("#countryanalyze").html("<div class='anhead'><h4>国家</h4></div>"+country_analyze_text);
+    $("#regionanalyze").html("<div class='anhead'><h4>地区</h4></div>"+region_analyze_text);
+});
+
+$("#province-chart").mouseout(function(e){
+    $("#countryanalyze").html("");
+    $("#regionanalyze").html("");
 });
