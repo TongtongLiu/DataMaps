@@ -342,7 +342,7 @@ $("#province-chart").mousemove(function(e){
     country_year_index = countryanalyze[year];
     country_analyze_text = countryanalyze[country_year_index];
     if(!country_analyze_text){
-        country_analyze_text = year+"年，未收集到国家级别的重大事件。"
+        country_analyze_text = "&nbsp;&nbsp;&nbsp;&nbsp;"+year+"年，未收集到国家级别的重大事件。"
     }
 
     $("#countryanalyze").html("<div class='anhead'><h4>国家</h4></div>"+country_analyze_text);
