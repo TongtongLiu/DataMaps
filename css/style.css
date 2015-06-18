@@ -89,9 +89,11 @@ hr {
 }
 #countryanalyze{
     padding-left: 15px;
+    line-height:200%
 }
 #regionanalyze{
     padding-right: 15px;
+    line-height:200%
 }
 .anhead{
     margin-bottom: 10px;
