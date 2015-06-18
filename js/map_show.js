@@ -330,14 +330,13 @@ $("#province-chart").mousemove(function(e){
     displayprovinces = $(".displayprovince");
     for (i = 0; i <displayprovinces.length; i++) {
         region =  $(".displayprovince:eq("+i+")").html();
-        region_analyze_text = region_analyze_text + "<div class='regionhead'>" + region+ ":</div>";
         region_analyze = regionanalyze[region];
         region_analyze_index = region_analyze[year];
         if(region_analyze[region_analyze_index]){
-            region_analyze_text += region_analyze[region_analyze_index];
+            region_analyze_text = region_analyze_text + "<div class='regionhead'>" + region+ ":</div>" + region_analyze[region_analyze_index];
         }
         else{
-            region_analyze_text =region_analyze_text + year+"年，未收集到省市级别的重大事件。";
+            region_analyze_text = region_analyze_text + "";
         }
     };
     country_year_index = countryanalyze[year];
